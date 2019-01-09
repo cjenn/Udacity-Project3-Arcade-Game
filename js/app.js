@@ -1,6 +1,6 @@
 // Enemies our player must avoid
 class Enemy {
-  constructor (x,y,) {
+  constructor (x,y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
@@ -46,7 +46,7 @@ class Player extends Enemy {
   update (dt) {
     //Win Condition
       if (this.y == 0) {
-      alert('You made it!')
+      alert('You made it!');
       //successCount++;
       resetPlayer();
     }
