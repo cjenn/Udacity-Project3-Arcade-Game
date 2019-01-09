@@ -1,11 +1,27 @@
 // Enemies our player must avoid
-class Enemy {
-  constructor (x,y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+class Entity {
+  constructor (x,y,speed) {
     this.x = x;
     this.y = y;
-    this.speed = Math.floor(Math.random() * 300) + 200;
+    this.speed = Math.floor(Math.random() * 300) + 250;
+  }
+
+  update (dt) {
+
+  }
+
+  // Draw the enemy on the screen, required method for game
+  render () {
+      ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  }
+}
+
+class Enemy extends Entity {
+  constructor (x,y) {
+    super(x,y);
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
+
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -25,21 +41,15 @@ class Enemy {
 
     }
 
-    // Draw the enemy on the screen, required method for game
-    render () {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
-
 }
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-class Player extends Enemy {
-  constructor (render) {
-    super(render);
-    this.x = 200;
-    this.y = 350;
+class Player extends Entity {
+  constructor (x,y) {
+    super(x,y);
+
     this.sprite = 'images/char-boy.png';
   }
 
@@ -53,7 +63,8 @@ class Player extends Enemy {
 
     //Collision Detection
     for (const enemy of allEnemies){
-      if (player.y == enemy.y) {
+    const diff = Math.abs(player.y - enemy.y);
+      if (diff < 50) {
         const diff = Math.abs(player.x - enemy.x);
         if (diff < 50) {
           console.log(`Fail - Position Reset`);
@@ -100,11 +111,12 @@ function resetPlayer (){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-const enemy1 = new Enemy(-100,70);
-const enemy2 = new Enemy(-100,140);
-const enemy3 = new Enemy(-100,210);
-const allEnemies = [enemy1,enemy2,enemy3];
-const player = new Player();
+const allEnemies = [];
+for (let i=0; i<3; i++) {
+    let enemy=new Enemy(-300,40+i* 90);
+    allEnemies.push(enemy);
+}
+const player = new Player(200,350);
 
 
 // This listens for key presses and sends the keys to your
