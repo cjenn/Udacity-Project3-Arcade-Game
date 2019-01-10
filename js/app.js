@@ -1,4 +1,4 @@
-// Enemies our player must avoid
+
 class Entity {
   constructor (x,y,speed) {
     this.x = x;
@@ -15,13 +15,12 @@ class Entity {
       ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 }
-
+// Enemies our player must avoid
 class Enemy extends Entity {
   constructor (x,y) {
     super(x,y);
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -55,10 +54,10 @@ class Player extends Entity {
 
   update (dt) {
     //Win Condition
-      if (this.y == 0) {
+      if (this.y <= 0) {
       alert('You made it!');
       //successCount++;
-      resetPlayer();
+      resetPlayer()
     }
 
     //Collision Detection
@@ -66,7 +65,7 @@ class Player extends Entity {
     const diff = Math.abs(player.y - enemy.y);
       if (diff < 50) {
         const diff = Math.abs(player.x - enemy.x);
-        if (diff < 50) {
+        if (diff < 60) {
           console.log(`Fail - Position Reset`);
           resetPlayer();
         }
@@ -103,7 +102,7 @@ class Player extends Entity {
 }
 
 function resetPlayer (){
-  player.y = 350;
+  player.y = 400;
 
 }
 
@@ -116,7 +115,7 @@ for (let i=0; i<3; i++) {
     let enemy=new Enemy(-300,40+i* 90);
     allEnemies.push(enemy);
 }
-const player = new Player(200,350);
+const player = new Player(200,400);
 
 
 // This listens for key presses and sends the keys to your
