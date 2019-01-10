@@ -7,7 +7,7 @@
 
 ## Instructions
 
-Download/clone the Project 3 folder from https://github.com/cjenn/Udacity-Project3-Arcade-Game
+Download/clone the Project 3 folder from https://github.com/cljennings/Udacity-Project3-Arcade-Game.
 Open the index.html file in a browser to start the game.
 
 ## Gameplay
